@@ -1,0 +1,21 @@
+download bcp from https://www.microsoft.com/en-us/download/details.aspx?id=53591
+or locate in C:\Program Files <x86>\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn
+
+bcp "tableName" out C:\DimCustomer.txt -S "ServerName" -d DatabaseName -U UserName -P Password -c
+
+upload file to s3
+
+create custom vpc
+goto redshift security 
+associat that vpc with cluster subnet group
+create IAM role with s3 access 
+create redshift cluster and use above created IAM role and VPC
+create table in redshift with same fields
+
+
+import data using 
+COPY DimCustomer FROM 's3://sql-dump-redshift/DimCustomer.txt' iam_role 'Role_ARN' delimiter '\t'; 
+
+in case of any error 
+select * from  STL_LOAD_ERRORS
+and analys the file for error message
